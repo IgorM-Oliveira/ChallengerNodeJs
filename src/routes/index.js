@@ -1,12 +1,11 @@
 const express = require('express');
-// const { model, models } = require('mongoose');
 
 const router = express.Router();
 
-router.get('/api/default', (req, res) => {
+router.get('/api', function(req, res) {
   res.status(200).send({
     success: true,
-    message: 'Sejá bem vindo a API',
+    message: 'Seja bem-vindo a API',
   });
 });
 
