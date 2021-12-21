@@ -11,6 +11,6 @@ mongoose.connect(
             console.log(`Erro ao conectar com a Base de Dados...: ${err}`);
             process.exit();
         };
-        console.log('A Base de Dados foi conectada com sucesso!');
+        console.log('Conexão ao banco estabelecida!');
     }
 )
