@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon && sudo service mongod start",
     "start": "node server.js",
     "lint": "eslint --fix --ext .js,.jsx ."
   },
