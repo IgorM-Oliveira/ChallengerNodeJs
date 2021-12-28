@@ -3,15 +3,8 @@ const express = require('express');
 const router = express.Router();
 const shortenerController = require('../controllers/shortener.controller');
 
-router.post('/shortener', shortenerController.shortener);
+router.get('/shortness', shortenerController.shortness);
 
-/*
-router.post('/shortener', function(req, res) {
-    res.status(200).send({
-        success: true,
-        message: req.body.url,
-    });
-});
-*/
+router.post('/shortener', shortenerController.shortener);
 
 module.exports = router;
