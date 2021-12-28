@@ -10,7 +10,7 @@ mongoose.connect(
         if (err) {
             console.log(`Erro ao conectar com a Base de Dados...: ${err}`);
             process.exit();
-        };
+        }
         console.log('Conexão ao banco estabelecida!');
     }
 )
