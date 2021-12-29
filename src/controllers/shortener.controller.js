@@ -1,9 +1,8 @@
 const Shortener = require('../models/shortener.model');
-const User = require("../models/user.model");
 
 function generateCode() {
     let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghilkmnopqrstuvwxyz0123456789';
 
     for (let i=0; i<5; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length))
@@ -11,21 +10,29 @@ function generateCode() {
     return 'http://localhost:3000/' + text
 }
 
-exports.shortness = async (req, res) => {
+exports.shortlist = async (req, res) => {
     try {
-        const links = await Shortener.find();
+        const links = await Shortener.find({user: req.userId}).populate('user');
         return res.send({links})
     } catch (err) {
         return res.status(400).json({message: "Não foi possível realizar está ação!"});
     }
 }
 
-exports.shortener = async (req, res) => {
+exports.short_delete = async (req, res) => {
+    try {
+        const links = await Shortener.findByIdAndRemove(req.params.shortnessId);
+        return res.send({links})
+    } catch (err) {
+        return res.status(400).json({message: "Não foi possível realizar está ação!"});
+    }
+}
+
+exports.short_register = async (req, res) => {
     try {
         const isUrl = await Shortener.find({url: req.body.url});
 
         if (isUrl.length >= 1) {
-            // await updateUrl({isUrl})
             return res
                 .status(409)
                 .json({message: "Atenção! Este URL já possui registro!"});
@@ -33,24 +40,21 @@ exports.shortener = async (req, res) => {
 
         const newShortener = new Shortener({
             url: req.body.url,
-            user: req.body.user,
+            user: req.userId,
             code: generateCode(),
             hits: 1
         });
 
-        const shortener = await newShortener.save();
+        const shortener = await Shortener.create(newShortener);
+        return res.send({ shortener })
+    } catch (err) {
         return res
-            .status(201)
-            .json({
-                message: "URL encurtada com sucesso!",
-                shortener: shortener.code
-            })
-        } catch (err) {
-        return res.status(400).json({message: "Não foi possível realizar está ação!"});
+            .status(400)
+            .json({message: "Não foi possível realizar está ação!"});
     }
 };
 
-const updateUrl = async (req, res) => {
+/*const updateUrl = async (req, res) => {
     try {
         const {email} = req.body;
         const {password} = req.body;
@@ -67,4 +71,4 @@ const updateUrl = async (req, res) => {
     } catch (err) {
         return res.status(400).json({message: "Não foi possível realizar está ação!"});
     }
-};
+};*/

@@ -1,10 +1,14 @@
 const express = require('express');
-
+const authMiddlewares = require('../middlewares/auth');
 const router = express.Router();
 const shortenerController = require('../controllers/shortener.controller');
 
-router.get('/shortness', shortenerController.shortness);
+router.use(authMiddlewares);
 
-router.post('/shortener', shortenerController.shortener);
+router.get('/shortlist', shortenerController.shortlist);
+
+router.delete('/shortlist/:shortnessId', shortenerController.short_delete);
+
+router.post('/short_register', shortenerController.short_register);
 
 module.exports = router;

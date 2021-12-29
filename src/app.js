@@ -18,7 +18,7 @@ app.use(cors());
 app.set("mongoose connection", mongo);
 
 app.use(index);
-app.use('/api', userRoutes);
-app.use('/api', shortenerRoutes);
+app.use('/', userRoutes);
+app.use('/', shortenerRoutes);
 
 module.exports = app;
