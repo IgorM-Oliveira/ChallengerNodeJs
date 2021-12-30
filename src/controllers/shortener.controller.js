@@ -19,6 +19,15 @@ exports.shortlist = async (req, res) => {
     }
 }
 
+exports.short_single = async (req, res) => {
+    try {
+        const links = await Shortener.findById(req.params.shortnessId).populate('user');
+        return res.send({links})
+    } catch (err) {
+        return res.status(400).json({message: "Não foi possível realizar está ação!"});
+    }
+}
+
 exports.short_delete = async (req, res) => {
     try {
         const links = await Shortener.findByIdAndRemove(req.params.shortnessId);
@@ -33,9 +42,13 @@ exports.short_register = async (req, res) => {
         const isUrl = await Shortener.find({url: req.body.url});
 
         if (isUrl.length >= 1) {
-            return res
-                .status(409)
-                .json({message: "Atenção! Este URL já possui registro!"});
+            try {
+                return res.send(isUrl[0])
+            } catch (err) {
+                return res
+                    .status(400)
+                    .json({message: "Não foi possível realizar está ação!"});
+            }
         }
 
         const newShortener = new Shortener({
@@ -52,23 +65,27 @@ exports.short_register = async (req, res) => {
             .status(400)
             .json({message: "Não foi possível realizar está ação!"});
     }
-};
+}
 
-/*const updateUrl = async (req, res) => {
+exports.short_update = async (req, res) => {
     try {
-        const {email} = req.body;
-        const {password} = req.body;
-        const user = await User.findByCredentials(email, password);
-        if (!user) {
-            return res.status(401).json({
-                error: "Erro ao Logar! Verifique as suas credenciais de autenticação!",
-            });
+        const newShortener = {
+            url: req.body.url,
+            user: req.userId,
+            code: generateCode(),
+            hits: req.body.hits + 1
         }
-        const token = await user.generateAuthToken();
-        return res
-            .status(201)
-            .json({message: "Usuário(a) logado com sucesso!", user, token});
+
+        console.log(newShortener);
+
+        const shortener = await Shortener.findByIdAndUpdate(req.body._id, newShortener, { new: true })
+
+        console.log(shortener);
+
+        return res.send({ shortener })
     } catch (err) {
-        return res.status(400).json({message: "Não foi possível realizar está ação!"});
+        return res
+            .status(400)
+            .json({message: "Não foi possível realizar está ação!"});
     }
-};*/
+}
