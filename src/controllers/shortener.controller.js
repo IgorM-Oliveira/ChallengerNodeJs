@@ -7,13 +7,40 @@ function generateCode() {
     for (let i=0; i<5; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-    return 'http://localhost:3000/' + text
+    return process.env.DOMAIN + text
 }
 
 exports.shortlist = async (req, res) => {
     try {
         const links = await Shortener.find({user: req.userId}).populate('user');
         return res.send({links})
+    } catch (err) {
+        return res.status(400).json({message: "Não foi possível realizar está ação!"});
+    }
+}
+
+exports.shortlist_all = async (req, res) => {
+    try {
+        const links = await Shortener.find().populate('user');
+        return res.send({links})
+    } catch (err) {
+        return res.status(400).json({message: "Não foi possível realizar está ação!"});
+    }
+}
+
+exports.short_redirect = async (req, res) => {
+    try {
+        const resulted = process.env.DOMAIN+req.params.code
+
+        const result = await Shortener.findOne({code: resulted})
+        if (!result) {
+            return res.status(404).json({message: "Não encontrada!"});
+        }
+
+        result.hits++
+        await result.save()
+
+        res.redirect(result.url)
     } catch (err) {
         return res.status(400).json({message: "Não foi possível realizar está ação!"});
     }
@@ -39,6 +66,7 @@ exports.short_delete = async (req, res) => {
 
 exports.short_register = async (req, res) => {
     try {
+        console.log(req.body);
         const isUrl = await Shortener.find({url: req.body.url});
 
         if (isUrl.length >= 1) {
@@ -73,7 +101,7 @@ exports.short_update = async (req, res) => {
             url: req.body.url,
             user: req.userId,
             code: generateCode(),
-            hits: req.body.hits + 1
+            hits: req.body.hits
         }
 
         console.log(newShortener);

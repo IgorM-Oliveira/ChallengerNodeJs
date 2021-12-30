@@ -2,7 +2,7 @@ const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const authConfig = require('../config/auth.json')
+const authConfig = require('../config/auth.js')
 
 function generateToken (params= {}) {
     return jwt.sign(params, authConfig.secret, {
