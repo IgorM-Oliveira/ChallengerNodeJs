@@ -66,7 +66,6 @@ exports.short_delete = async (req, res) => {
 
 exports.short_register = async (req, res) => {
     try {
-        console.log(req.body);
         const isUrl = await Shortener.find({url: req.body.url});
 
         if (isUrl.length >= 1) {
@@ -85,6 +84,8 @@ exports.short_register = async (req, res) => {
             code: generateCode(),
             hits: 1
         });
+
+        console.log(newShortener);
 
         const shortener = await Shortener.create(newShortener);
         return res.send({ shortener })
