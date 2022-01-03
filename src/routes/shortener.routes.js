@@ -5,17 +5,17 @@ const shortenerController = require('../controllers/shortener.controller');
 
 // router.use(authMiddlewares);
 
-router.get('/shortlist', authMiddlewares, shortenerController.shortlist);
+router.get('/shortlist', shortenerController.shortlist).use(authMiddlewares);
 
 router.get('/shortlist_all', shortenerController.shortlist_all);
 
-router.get('/shortlist/:shortnessId', authMiddlewares, shortenerController.short_single);
+router.get('/shortlist/:shortnessId', shortenerController.short_single).use(authMiddlewares);
 
 router.get('/:code', shortenerController.short_redirect);
 
-router.put('/short_update/:shortnessId', authMiddlewares, shortenerController.short_update);
+router.put('/short_update/:shortnessId', shortenerController.short_update).use(authMiddlewares);
 
-router.delete('/shortlist/:shortnessId', authMiddlewares, shortenerController.short_delete);
+router.delete('/shortlist/:shortnessId', shortenerController.short_delete).use(authMiddlewares);
 
 router.post('/short_register', shortenerController.short_register);
 
