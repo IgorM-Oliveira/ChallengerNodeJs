@@ -12,7 +12,7 @@ function generateCode() {
 
 exports.shortlist = async (req, res) => {
     try {
-        const links = await Shortener.find({user: req.userId}).populate('user');
+        const links = await Shortener.find({user: req.userId}).sort({hits: -1}).populate('user');
         return res.send({links})
     } catch (err) {
         return res.status(400).json({message: "Não foi possível realizar está ação!"});
@@ -21,7 +21,7 @@ exports.shortlist = async (req, res) => {
 
 exports.shortlist_all = async (req, res) => {
     try {
-        const links = await Shortener.find().populate('user');
+        const links = await Shortener.find().sort({hits: -1}).populate('user');
         return res.send({links})
     } catch (err) {
         return res.status(400).json({message: "Não foi possível realizar está ação!"});
@@ -66,7 +66,6 @@ exports.short_delete = async (req, res) => {
 
 exports.short_register = async (req, res) => {
     try {
-        console.log(req.body);
         const isUrl = await Shortener.find({url: req.body.url});
 
         if (isUrl.length >= 1) {
@@ -85,6 +84,8 @@ exports.short_register = async (req, res) => {
             code: generateCode(),
             hits: 1
         });
+
+        console.log(newShortener);
 
         const shortener = await Shortener.create(newShortener);
         return res.send({ shortener })
