@@ -8,6 +8,7 @@ const app = express();
 const index = require("./routes/index");
 const userRoutes = require("./routes/user.routes");
 const shortenerRoutes = require("./routes/shortener.routes");
+const shortenerAuthRoutes = require("./routes/shortener_auth.routes");
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -20,5 +21,6 @@ app.set("mongoose connection", mongo);
 app.use(index);
 app.use('/', userRoutes);
 app.use('/', shortenerRoutes);
+app.use('/', shortenerAuthRoutes);
 
 module.exports = app;
