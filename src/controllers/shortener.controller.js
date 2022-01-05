@@ -85,8 +85,6 @@ exports.short_register = async (req, res) => {
             hits: 1
         });
 
-        console.log(newShortener);
-
         const shortener = await Shortener.create(newShortener);
         return res.send({ shortener })
     } catch (err) {
