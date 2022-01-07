@@ -13,13 +13,15 @@ Caso já tenha instalado pule as 2 primeiras orientações e va direto a `Inicia
 5. sudo apt install mongodb-org 
 6. sudo systemctl start mongod.service
 7. sudo systemctl status mongod
-8. sudo service mongod start
 
 ### Install MongoDB Compass
 Obs.: Exacutar está parte caso queira ver os dados no banco.
 1. wget https://downloads.mongodb.com/compass/mongodb-compass_1.29.6_amd64.deb
 2. sudo dpkg -i mongodb-compass_1.29.6_amd64.deb 
 3. mongodb-compass
+
+### Antes de iniciarmos, vamos startar o banco
+- sudo service mongod start
 
 ### Iniciando e configurando o projeto
 1. Clone o arquivo `.env.exemple`e renomei-o para `.env`.
