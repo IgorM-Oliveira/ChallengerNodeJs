@@ -35,9 +35,13 @@ exports.userRegistrationAnonymous = async (req, res) => {
         const isUser = await User.find({email: 'anonymity@gmail.com'});
 
         if (isUser.length >= 1) {
-            return res
-                .status(409)
-                .json({message: "Atenção! Este e-mail já possui registro!"});
+            try {
+                return res.send(isUser[0])
+            } catch (err) {
+                return res
+                    .status(400)
+                    .json({message: "Não foi possível realizar está ação!"});
+            }
         }
 
         const user = await User.create(

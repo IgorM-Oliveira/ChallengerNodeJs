@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const database = require('./db.config');
 
-// mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;
 
 mongoose.connect(
     database.web.localUrlDatabase,
