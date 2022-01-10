@@ -4,12 +4,14 @@
     Challenger NodeJs
 </h1>
 
-**[Install MongoDB](#install-mongo)**&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-**[Install MongoDB Compass](#install-compass)**&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-**[Start MongoDB](#start-mongo)**&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-**[Configuration Project](#config)**
+<h4 align="center">
+  <a href="#install_mongo">Install MongoDB</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#install_compass">Install MongoDB Compass</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#start_mongo">Start MongoDB</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#config">Configuration Project</a>
+</h4>
 
-Caso já tenha instalado pule as 2 primeiras orientações e va direto a `Iniciando e configurando o projeto`
+- Caso já tenha instalado o MongoDB e o MongoDB Compass, vá diretamente ao <a href="#config">Configuration Project</a>
 
 ## Install MongoDB
 1. curl -fsSL https://www.mongodb.org/static/pgp/_server-4.4.asc_ | sudo apt-key add - 
