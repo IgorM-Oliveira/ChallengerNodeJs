@@ -5,10 +5,10 @@
 </h1>
 
 <h4 align="center">
-  <a href="#install_mongo">Install MongoDB</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#install_compass">Install MongoDB Compass</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#start_mongo">Start MongoDB</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#config">Configuration Project</a>
+  <a href="#install-mongodb">Install MongoDB</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#install-mongodb-compass">Install MongoDB Compass</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#start-mongodb">Start MongoDB</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#configuration-project">Configuration Project</a>
 </h4>
 
 - Caso já tenha instalado o MongoDB e o MongoDB Compass, vá diretamente ao <a href="#config">Configuration Project</a>
