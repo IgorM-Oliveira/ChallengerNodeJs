@@ -11,7 +11,7 @@
   <a href="#configuration-project">Configuration Project</a>
 </h4>
 
-- Caso já tenha instalado o MongoDB e o MongoDB Compass, vá diretamente ao <a href="#config">Configuration Project</a>
+- Caso já tenha instalado o MongoDB e o MongoDB Compass, vá diretamente ao <a href="#configuration-project">Configuration Project</a>
 
 ## Install MongoDB
 1. curl -fsSL https://www.mongodb.org/static/pgp/_server-4.4.asc_ | sudo apt-key add - 
@@ -37,3 +37,5 @@ Obs.: Exacutar está parte caso queira ver os dados no banco.
 3. Após a execução comando anterior, comece o projeto com `node server` ou `nodemon`.
 
 Obs.:(Recomendace `nodemon`)
+
+[node-image]: https://medium.com/thdesenvolvedores/node-js-o-que-%C3%A9-por-que-usar-e-primeiros-passos-1118f771b889
