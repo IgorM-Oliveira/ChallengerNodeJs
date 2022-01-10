@@ -4,12 +4,10 @@
     Challenger NodeJs
 </h1>
 
-<p align="center">
-  <a href="#install_mongo">Install MongoDB</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#install_compass">Install MongoDB Compass</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#start_mongo">Start MongoDB</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#config">Config Back-end</a>
-</p>
+**[Install MongoDB](#install-mongo)**&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+**[Install MongoDB Compass](#install-compass)**&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+**[Start MongoDB](#start-mongo)**&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+**[Configuration Project](#config)**
 
 Caso já tenha instalado pule as 2 primeiras orientações e va direto a `Iniciando e configurando o projeto`
 
@@ -28,10 +26,10 @@ Obs.: Exacutar está parte caso queira ver os dados no banco.
 2. sudo dpkg -i mongodb-compass_1.29.6_amd64.deb 
 3. mongodb-compass
 
-## Antes de iniciarmos, vamos startar o banco
+## Start MongoDB
 - sudo service mongod start
 
-## Iniciando e configurando o projeto
+## Configuration Project
 1. Clone o arquivo `.env.exemple`e renomei-o para `.env`.
 2. Execute o comando `yarn` ou `npm install` para baixar o node modules.
 3. Após a execução comando anterior, comece o projeto com `node server` ou `nodemon`.
