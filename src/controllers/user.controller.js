@@ -15,16 +15,14 @@ exports.userRegistration = async (req, res) => {
         const isUser = await User.find({email: req.body.email});
 
         if (isUser.length >= 1) {
-            return res
-                .status(409)
-                .json({message: "Atenção! Este e-mail já possui registro!"});
+            return res.status(409).json({message: "Atenção! Este e-mail já possui registro!"});
         }
 
         const user = await User.create(req.body);
 
         user.password = undefined;
 
-        return res.send({ user, token: generateToken({ id: user._id }) });
+        return res.json({ user, token: generateToken({ id: user._id }) });
     } catch (err) {
         return res.status(400).json({err});
     }
@@ -75,7 +73,7 @@ exports.userAuthenticate = async (req, res) => {
 
     user.password = undefined;
 
-    res.send({ user, token: generateToken({ id: user._id }) });
+    res.json({ user, token: generateToken({ id: user._id }) });
 };
 
 exports.userAuthenticateAnonymous = async (req, res) => {
