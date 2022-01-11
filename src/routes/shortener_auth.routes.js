@@ -1,11 +1,12 @@
 const express = require('express');
-const authMiddlewares = require('../middlewares/auth');
 const router = express.Router();
+
+const authMiddlewares = require('../middlewares/auth');
 const shortenerController = require('../controllers/shortener.controller');
 
 router.use(authMiddlewares);
 
-router.get('/shortlist/person', shortenerController.shortlist);
+router.get('/shortlist/links', shortenerController.shortlist);
 
 router.get('/shortlist/:shortnessId', shortenerController.short_single);
 

@@ -39,7 +39,7 @@ exports.userRegistrationAnonymous = async (req, res) => {
                 return res.send(isUser[0])
             } catch (err) {
                 return res
-                    .status(400)
+                    .status(401)
                     .json({message: "Não foi possível realizar está ação!"});
             }
         }
@@ -66,15 +66,11 @@ exports.userAuthenticate = async (req, res) => {
     const user = await User.findOne({email}).select('+password');
 
     if (!user) {
-        return res
-            .status(400)
-            .json({message: "Usuário(a) não encontrado"});
+        res.status(401).json({message: "Usuário(a) não encontrado"});
     }
 
     if (!await bcrypt.compare(password, user.password)) {
-        return res
-            .status(400)
-            .json({message: "Senha invalida"});
+        res.status(401).json({message: "Senha invalida"});
     }
 
     user.password = undefined;
